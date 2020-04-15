@@ -5,31 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>getElements</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/nord.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
     <style>
-        hr.solid {
-            border-top: 2px solid #bbb;
+        blockquote {
+            padding-left: 20px;
+            border-left: 10px solid #696969;
+        }
+        .hero {
+            background:linear-gradient(120deg, #8871EA, #6176E9);
+        }
+        .hero .title {
+            color: white;
+        }
+        .container {
+            margin-bottom: 12px;
+        }
+        pre {
+            padding: 10px;
+        }
+        code {
+            border-radius: 10px;
         }
     </style>
     </head>
   <body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered">
+                getElements with vanilla js!
+            </h1>
+          </div>
+        </div>
+      </section>    
+
   <section class="section">
     <div class="container">
-      <h1 class="title">
-        getElements with vanilla js!
-      </h1>
-      <hr class="solid">
-      <div class="is-divider" data-content="OR"></div>
+      <blockquote>h1태그를 검색</blockquote>
+      <p>document.getElementsByTagName를 사용</p>
+    </div>
+
+    <pre><code class="js">
+        var element_h1 = document.getElementsByTagName('h1')[0]
+        console.log(element_h1.innerText)
+    </code></pre>
+    
+    <div class="container">
       <h2 name="h2">name test</h2>
+      <blockquote>name 옵션 검색</blockquote>
+      <p>document.getElementsByName를 사용</p>
+    </div>
+
+    <pre><code class="js">
+        var element_h2 = document.getElementsByName('h2')[0]
+        console.log(element_h2.innerText)
+    </code></pre>
+
+    <div class="container">
       <p class="subtitle">
         My first website with <strong>Bulma</strong>!
-      </p>
-      <input id="input"/>
-      <button onclick="add_text()">append html</button>
-      <button onclick="rm_text()">remove html</button>
+        <blockquote>css를 검색</blockquote>
+        <p>document.getElementsByClassName 사용</p>  
+    </div>
+
+    <pre><code class="js">
+        var element_subtitle = document.getElementsByClassName('subtitle')[0]
+        element_subtitle.innerText = `h1 text: ${element_h1.innerText}`
+    </code></pre>
+
+    <div class="container">
+        <blockquote>appendchild 사용법</blockquote>
+        <p>document.createElement("H3")로 태그 제작</p>
+        <p>document.createTextNode(input_str)로 텍스트 노드 제작</p>
+        <p>element_h3.appendChild(element_h3_text)</p>
+        <p>h3_form.appendChild(element_h3)</p>
+    </div>
+
+    <pre><code class="js">
+        var h3_form = document.getElementById('form')
+        function add_text(){
+            var element_h3 = document.createElement("H3")
+            var input_str = document.getElementById("input").value
+            var element_h3_text = document.createTextNode(input_str)
+            element_h3.appendChild(element_h3_text)
+            h3_form.appendChild(element_h3)
+        }
+    </code></pre>
+
+    <div class="container">
+        <blockquote>노드 삭제</blockquote>
+        <p>element를 찾은 후 remove()</p>
+    </div>
+
+    <pre><code class="js">
+        function rm_text() {
+        input_str = document.getElementById("input").value
+        elements_h3 = document.getElementsByTagName('h3')
+        for(var i=0;i&lt;elements_h3.length;i++){
+            if(elements_h3[i].outerHTML.includes(input_str)){
+                elements_h3[i].remove()
+                break
+            }
+        }
+    }
+    </code></pre>
+
+    <input id="input"/>
+    <button onclick="add_text()">append html</button>
+    <button onclick="rm_text()">remove html</button>
+
+    <div id="form" class="container">
       <h3>hello world!</h3>
       <h3>vanilla js</h3>
       <h3>coding</h3>
-    </div>
+    </div> 
+
   </section>
   
   <script src="../getElements.js"></script>
