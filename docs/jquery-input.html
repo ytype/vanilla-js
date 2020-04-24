@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jquery-input</title>
+    <link href="http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/nord.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        .hero {
+            background:linear-gradient(120deg, #8871EA, #6176E9);
+        }
+        .hero .title {
+            color: white;
+        }
+        .column {
+            margin: 15px;
+        }
+    </style>
+    </head>
+  <body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered">
+              jquery-input
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div class="columns is-multiline is-desktop">
+        <div class="column">
+          <input class="radio" type="radio" name="fruits" value="사과"><label>사과</label>
+          <input class="radio" type="radio" name="fruits" value="복숭아"><label>복숭아</label>
+          <p id="radio_result"></p>
+          <button class="button" onclick="radio_alert()">check</button>
+          <pre><code class="js">
+            radio_alert = () => {
+              if($("input:radio[name='fruits'][value='사과']").is(":checked")){
+                  alert($("input:radio[name='fruits'][value='사과']").val())
+                  $("p[id='radio_result']").text('사과')
+              } else if ($("input:radio[name='fruits'][value='복숭아']").is(":checked")){
+                  alert($("input:radio[name='fruits'][value='복숭아']").val())
+                  $("p[id='radio_result']").text('복숭아')
+              }
+          }
+        </code></pre>
+        </div>
+
+        <div class="column">
+          <input type="checkbox" name="chk_info" value="HTML">HTML
+          <input type="checkbox" name="chk_info" value="CSS">CSS
+          <input type="checkbox" name="chk_info" value="JS">JS
+          <input type="checkbox" name="chk_info" value="웹디자인">웹디자인
+          <p id="check_result"></p>
+          <button class="button" onclick="check_alert()">check</button>
+          <pre><code class="js">
+            check_alert = () => {
+              arr = new Array()
+              $("input:checkbox[name=chk_info]:checked").each(function() { 
+                  arr.push($(this).val())
+              })
+              alert($("input:checkbox[name=chk_info]:checked").length + '개 체크')
+              $("p[id='check_result']").text(arr)
+          }
+        </code></pre>
+        </div>
+        <div class="column">
+          <p>trim()은 문자열의 앞/뒤 공백을 제거한다.</p>
+          <input type="text" name="text" class="input">
+          <p id="input_result"></p>
+          <button class="button" onclick="input_alert()">check</button>
+        </div>
+
+      </div>
+      <script src="js/jquery-input.js"></script>
+  </body>
+</html>
