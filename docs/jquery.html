@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jquery-hard</title>
+    <link href="http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/nord.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        .hero {
+            background:linear-gradient(120deg, #8871EA, #6176E9);
+        }
+        .hero .title {
+            color: white;
+        }
+        .column {
+            margin: 15px;
+        }
+        .append {
+          font-size: 2rem;
+        }
+    </style>
+    </head>
+  <body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered">
+                jquery-hard
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div class="columns is-multiline is-desktop">
+        <div class="column">
+            <h1 id="color">Change Color</h1>
+            <input type="text" class="input">
+            <button id="change">change</button>
+            <button onclick="addClass()">add class font size</button>
+            <button onclick="removeClass()">remove class</button> 
+            <button onclick="defaultCalss()">default class</button>
+            <p>클래스 추가 : addClass</p>
+            <p>클래스 삭제 : removeClass</p>
+            <p>클래스 변경 : attr</p>
+            <p>click 이벤트</p>
+            <pre><code>
+              $("button[id='change']").click(() => {
+                let hex = $("input:text[class='input']").val()
+                changeColor(hex)
+            })
+            </code></pre>
+        </div>
+        <div class="column">
+          <p>Arrow Function은 this를 바인딩 하지 못한다. 다음은 정상적으로 작동하지만</p>
+          <p>function()을 () => 로 변경하면 작동하지 않는다.</p>
+          <p>function은 동적으로 this를 가져오지만, arrow function은 상위 스코프를 정적으로 가져오기 때문 (Lexical this)</p>
+          <pre><code>
+            $("button").on('click', (event) => {
+              console.log("clicked")
+              $(this).remove();
+          })
+          </code></pre>
+          <p>Arrow Function에서 this를 사용하기 위해서는 이벤트의 currentTarget를 가져와야 한다.</p>
+          <pre><code>
+            $('button').on('click', (event) => {
+              console.log("clicked")
+              var $this = $(event.currentTarget);
+              $this.remove()
+          })
+          </code></pre>
+          <button class="remove_click">클릭하면 삭제</button>
+          <button class="remove_click">클릭하면 삭제</button>
+          <button class="remove_click">클릭하면 삭제</button>
+          <div class="column">
+            <h2>밑 텍스트 클릭</h2>
+            <h2>클래스나 아이디 없이</h2>
+            <h2>태그와 this만으로 검색 후</h2>
+            <h2>콘솔로 출력</h2>
+            <p id="console"></p>
+            <pre><code>
+            outerHTML = (element) => {
+                return element.parent().clone().wrapAll("&lt;div/&gt;").parent().html()
+            }
+            $("h2").on('click', (event) => {
+              let $this = $(event.currentTarget);
+              let p = $("p[id='console']").text($this.text())
+              console.log(outerHTML($this))
+            })
+            </code></pre>
+          </div>
+        </div>
+      </div>
+      <script src="js/jquery-hard.js"></script>
+  </body>
+</html>
