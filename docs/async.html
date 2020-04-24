@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jquery-node</title>
+    <link href="http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/nord.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        .hero {
+            background:linear-gradient(120deg, #8871EA, #6176E9);
+        }
+        .hero .title {
+            color: white;
+        }
+        .column {
+            margin: 15px;
+        }
+        .remove_btn {
+            float: right;
+            display: inline;
+            top: -30px;
+        }
+    </style>
+    </head>
+  <body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered">
+              jquery-node
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div class="columns is-multiline is-desktop">
+        <div class="column">
+            <h2>Create a resource Ajax</h2>
+            <input class="input" placeholder="title">
+            <input class="input" placeholder="body">
+            <input class="input" placeholder="userId">
+            <button class="button">ajaxPost</button>
+        </div>
+
+        <div class="column">
+            <h2>Get a resource Ajax</h2>
+            <input class="input" placeholder="index">
+            <button class="button">ajaxGet</button>
+        </div>
+
+    </div>
+      <script src="js/async.js"></script>
+  </body>
+</html>
